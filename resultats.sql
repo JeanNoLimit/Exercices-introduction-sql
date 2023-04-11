@@ -183,3 +183,9 @@ WHERE id_personnage=23;
 
 DELETE FROM composer
 WHERE id_potion=9 AND id_ingredient=19;
+
+--F. Obélix s'est trompé : ce sont 42 casques Weisenau, et non Ostrogoths, qu'il a pris lors de la bataille 'Attaque de la banque postale'. Corrigez son erreur !
+
+UPDATE prendre_casque
+	SET id_casque=10
+WHERE id_personnage=5 AND id_bataille=9 AND id_casque=14;
