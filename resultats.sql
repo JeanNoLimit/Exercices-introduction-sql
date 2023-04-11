@@ -94,3 +94,11 @@ GROUP BY nom_bataille
 ORDER BY nbTtl DESC
 LIMIT 1;
 
+--exercice 11 Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par nombre décroissant)
+
+SELECT nom_type_casque, COUNT(id_casque) AS nb_casques, SUM(cout_casque) AS cout_casques
+FROM casque
+INNER JOIN type_casque ON casque.id_type_casque = type_casque.id_type_casque
+GROUP BY nom_type_casque
+ORDER BY nb_casques DESC;
+
