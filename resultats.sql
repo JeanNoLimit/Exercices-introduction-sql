@@ -110,3 +110,18 @@ INNER JOIN potion ON composer.id_potion= potion.id_potion
 INNER JOIN ingredient ON composer.id_ingredient =ingredient.id_ingredient
 WHERE ingredient.id_ingredient=24;
 
+--exercice 13 Nom du / des lieu(x) possédant le plus d'habitants, en dehors du village gaulois.
+
+SELECT nom_lieu, COUNT(p.id_personnage) AS nb
+FROM personnage p, lieu l
+WHERE p.id_lieu!=1 AND p.id_lieu = l.id_lieu
+GROUP BY l.id_lieu
+HAVING nb>= ALL (
+	SELECT COUNT(p.id_personnage)
+	FROM personnage p, lieu l
+	WHERE p.id_lieu = l.id_lieu AND p.id_lieu!=1
+	GROUP BY l.id_lieu);
+/*la commande ALL permet de comparer une valeur dans l’ensemble de valeurs d’une sous-requête.
+En d’autres mots, cette commande permet de s’assurer qu’une condition est “égale”, “différente”,
+“supérieure”, “inférieure”, “supérieure ou égale” ou “inférieure ou égale” pour tous les résultats
+retourné par une sous-requête.*/
