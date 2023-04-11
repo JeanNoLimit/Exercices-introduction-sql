@@ -156,3 +156,7 @@ WHERE p.id_personnage NOT IN (
 	WHERE id_potion=1) 
 GROUP BY p.id_personnage;
 
+--A. Ajoutez le personnage suivant : Champdeblix, agriculteur résidant à la ferme Hantassion de Rotomagus.
+
+INSERT INTO personnage(id_personnage, nom_personnage, adresse_personnage, id_lieu, id_specialite)
+VALUES(46,'Champdeblix', 'ferme Hantassion',6,12)
