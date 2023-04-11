@@ -160,3 +160,8 @@ GROUP BY p.id_personnage;
 
 INSERT INTO personnage(id_personnage, nom_personnage, adresse_personnage, id_lieu, id_specialite)
 VALUES(46,'Champdeblix', 'ferme Hantassion',6,12)
+
+--B. Autorisez Bonemine à boire de la potion magique, elle est jalouse d'Iélosubmarine...
+
+INSERT INTO autoriser_boire
+VALUES(1,12);
