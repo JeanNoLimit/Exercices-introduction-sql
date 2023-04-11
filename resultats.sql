@@ -125,3 +125,13 @@ HAVING nb>= ALL (
 En d’autres mots, cette commande permet de s’assurer qu’une condition est “égale”, “différente”,
 “supérieure”, “inférieure”, “supérieure ou égale” ou “inférieure ou égale” pour tous les résultats
 retourné par une sous-requête.*/
+
+--exercice 14 Nom des personnages qui n'ont jamais bu aucune potion.
+
+/*LEFT JOIN permet de joindre 2 tables A et B. On peut lister tous les résultats de la table A même si absent de la table B
+ */
+
+SELECT nom_personnage
+FROM personnage p
+LEFT JOIN boire b ON p.id_personnage = b.id_personnage
+WHERE b.id_personnage IS NULL;
