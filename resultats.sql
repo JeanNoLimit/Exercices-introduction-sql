@@ -27,3 +27,10 @@ FROM specialite
 INNER JOIN personnage ON specialite.id_specialite = personnage.id_specialite
 GROUP BY specialite.id_specialite
 ORDER BY COUNT(id_personnage) DESC;
+
+--exercice 5 Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa).
+
+SELECT nom_bataille, nom_lieu, DATE_FORMAT(date_bataille, "%d/%m/%Y") 
+FROM bataille
+INNER JOIN lieu ON bataille.id_lieu = lieu.id_lieu
+ORDER BY date_bataille;
