@@ -84,3 +84,13 @@ FROM boire
 INNER JOIN personnage ON boire.id_personnage = personnage.id_personnage
 GROUP BY personnage.id_personnage
 ORDER BY qte_bue DESC;
+
+--exercice 10 Nom de la bataille où le nombre de casques pris a été le plus important.
+
+SELECT nom_bataille, SUM(qte) AS nbTtl
+FROM prendre_casque
+INNER JOIN bataille ON prendre_casque.id_bataille  = bataille.id_bataille
+GROUP BY nom_bataille
+ORDER BY nbTtl DESC
+LIMIT 1;
+
