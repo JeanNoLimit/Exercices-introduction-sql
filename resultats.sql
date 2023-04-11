@@ -102,3 +102,11 @@ INNER JOIN type_casque ON casque.id_type_casque = type_casque.id_type_casque
 GROUP BY nom_type_casque
 ORDER BY nb_casques DESC;
 
+--exercice 12 Nom des potions dont un des ingrédients est le poisson frais.
+
+SELECT nom_potion
+FROM composer
+INNER JOIN potion ON composer.id_potion= potion.id_potion
+INNER JOIN ingredient ON composer.id_ingredient =ingredient.id_ingredient
+WHERE ingredient.id_ingredient=24;
+
