@@ -20,3 +20,10 @@ INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
 INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
 ORDER BY nom_lieu, nom_personnage;
 
+--exercice 4 Nom des spécialités avec nombre de personnages par spécialité (trié par nombre de personnages décroissant).
+
+SELECT nom_specialite, COUNT(id_personnage)
+FROM specialite
+INNER JOIN personnage ON specialite.id_specialite = personnage.id_specialite
+GROUP BY specialite.id_specialite
+ORDER BY COUNT(id_personnage) DESC;
