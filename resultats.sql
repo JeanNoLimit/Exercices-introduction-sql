@@ -135,3 +135,24 @@ SELECT nom_personnage
 FROM personnage p
 LEFT JOIN boire b ON p.id_personnage = b.id_personnage
 WHERE b.id_personnage IS NULL;
+
+--exercice 15 Nom du / des personnages qui n'ont pas le droit de boire de la potion 'Magique'.
+--/!\ Demander Vérification!
+
+--selectionne les personnages qui ne sont pas dans la table autoriser_boire.
+SELECT p.id_personnage,nom_personnage
+FROM personnage p
+WHERE id_personnage NOT IN (SELECT id_personnage FROM autoriser_boire)
+--UNION permet de mettre bout-à-bout les résultats. -> concaténation des résultats.
+UNION
+--Selectionne les personnages qui sont dans la table autoriser_boire mais qui n'ont pas le droit de boire la potion magique
+SELECT p.id_personnage,nom_personnage
+FROM personnage p
+INNER JOIN autoriser_boire ab ON p.id_personnage = ab.id_personnage
+WHERE p.id_personnage NOT IN (
+	SELECT p.id_personnage
+	FROM personnage p
+	INNER JOIN autoriser_boire ab ON p.id_personnage = ab.id_personnage
+	WHERE id_potion=1) 
+GROUP BY p.id_personnage;
+
