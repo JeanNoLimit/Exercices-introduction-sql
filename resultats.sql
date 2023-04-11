@@ -61,3 +61,18 @@ WHERE bataille.id_bataille =1
 GROUP BY personnage.id_personnage
 ORDER BY nbTTl DESC
 LIMIT 1; --affichera un seul résultat
+
+--Deuxième solution (pour gérer le cas où plusieurs des personnages sont à égalité)
+SELECT nom_personnage,  nom_bataille, SUM(qte) AS nbTtl
+FROM prendre_casque
+INNER JOIN personnage ON prendre_casque.id_personnage = personnage.id_personnage
+INNER JOIN bataille ON prendre_casque.id_bataille = bataille.id_bataille
+WHERE bataille.id_bataille =1
+GROUP BY personnage.id_personnage
+HAVING nbTtl>=ALL (
+	SELECT SUM(qte)
+	FROM prendre_casque
+	INNER JOIN personnage ON prendre_casque.id_personnage = personnage.id_personnage
+	INNER JOIN bataille ON prendre_casque.id_bataille = bataille.id_bataille
+	WHERE bataille.id_bataille=1
+	GROUP BY personnage.id_personnage);
