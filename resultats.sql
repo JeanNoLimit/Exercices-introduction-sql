@@ -76,3 +76,11 @@ HAVING nbTtl>=ALL (
 	INNER JOIN bataille ON prendre_casque.id_bataille = bataille.id_bataille
 	WHERE bataille.id_bataille=1
 	GROUP BY personnage.id_personnage);
+
+--exercice 9 Nom des personnages et leur quantité de potion bue (en les classant du plus grand buveur au plus petit).
+
+SELECT nom_personnage, sum(dose_boire) AS qte_bue
+FROM boire
+INNER JOIN personnage ON boire.id_personnage = personnage.id_personnage
+GROUP BY personnage.id_personnage
+ORDER BY qte_bue DESC;
