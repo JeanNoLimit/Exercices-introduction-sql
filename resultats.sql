@@ -12,3 +12,11 @@ INNER JOIN lieu l ON p.id_lieu = l.id_lieu
 GROUP BY l.id_lieu
 ORDER BY nbGaulois DESC;
 
+--exercice 3 Nom des personnages + spécialité + adresse et lieu d'habitation, triés par lieu puis par nom de personnage.
+
+SELECT nom_lieu, nom_personnage, nom_specialite, adresse_personnage 
+FROM personnage
+INNER JOIN lieu ON personnage.id_lieu = lieu.id_lieu
+INNER JOIN specialite ON personnage.id_specialite = specialite.id_specialite
+ORDER BY nom_lieu, nom_personnage;
+
