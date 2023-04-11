@@ -34,3 +34,12 @@ SELECT nom_bataille, nom_lieu, DATE_FORMAT(date_bataille, "%d/%m/%Y")
 FROM bataille
 INNER JOIN lieu ON bataille.id_lieu = lieu.id_lieu
 ORDER BY date_bataille;
+
+--exercice 6 Nom des potions + coût de réalisation de la potion (trié par coût décroissant).
+
+SELECT nom_potion, SUM(qte*cout_ingredient)
+FROM composer
+INNER JOIN potion ON potion.id_potion = composer.id_potion
+INNER JOIN ingredient ON ingredient.id_ingredient = composer.id_ingredient
+GROUP BY potion.id_potion;
+
