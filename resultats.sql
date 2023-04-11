@@ -165,3 +165,9 @@ VALUES(46,'Champdeblix', 'ferme Hantassion',6,12)
 
 INSERT INTO autoriser_boire
 VALUES(1,12);
+
+--C. Supprimez les casques grecs qui n'ont jamais été pris lors d'une bataille.
+
+DELETE FROM casque
+WHERE id_type_casque=2 AND casque.id_casque 
+NOT IN (SELECT id_casque FROM prendre_casque);
