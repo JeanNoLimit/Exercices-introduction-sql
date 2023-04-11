@@ -43,3 +43,10 @@ INNER JOIN potion ON potion.id_potion = composer.id_potion
 INNER JOIN ingredient ON ingredient.id_ingredient = composer.id_ingredient
 GROUP BY potion.id_potion;
 
+--exercice 7 Nom des ingrédients + coût + quantité de chaque ingrédient qui composent la potion 'Santé'.
+
+SELECT nom_potion, nom_ingredient, cout_ingredient, qte
+FROM composer
+INNER JOIN potion ON potion.id_potion = composer.id_potion
+INNER JOIN ingredient ON ingredient.id_ingredient = composer.id_ingredient
+WHERE nom_potion LIKE 'Santé';
