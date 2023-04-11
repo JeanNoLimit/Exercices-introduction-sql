@@ -171,3 +171,10 @@ VALUES(1,12);
 DELETE FROM casque
 WHERE id_type_casque=2 AND casque.id_casque 
 NOT IN (SELECT id_casque FROM prendre_casque);
+
+--D. Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate.
+
+UPDATE personnage
+SET adresse_personnage = 'Prison',
+	id_lieu=9
+WHERE id_personnage=23;
