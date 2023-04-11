@@ -50,3 +50,14 @@ FROM composer
 INNER JOIN potion ON potion.id_potion = composer.id_potion
 INNER JOIN ingredient ON ingredient.id_ingredient = composer.id_ingredient
 WHERE nom_potion LIKE 'Santé';
+
+--exercice 8 Nom du ou des personnages qui ont pris le plus de casques dans la bataille 'Bataille du village gaulois'.
+
+SELECT nom_personnage,  nom_bataille, SUM(qte) AS nbTtl
+FROM prendre_casque
+INNER JOIN personnage ON prendre_casque.id_personnage = personnage.id_personnage
+INNER JOIN bataille ON prendre_casque.id_bataille = bataille.id_bataille
+WHERE bataille.id_bataille =1
+GROUP BY personnage.id_personnage
+ORDER BY nbTTl DESC
+LIMIT 1; --affichera un seul résultat
