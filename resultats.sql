@@ -87,12 +87,17 @@ ORDER BY qte_bue DESC;
 
 --exercice 10 Nom de la bataille où le nombre de casques pris a été le plus important.
 
-SELECT nom_bataille, SUM(qte) AS nbTtl
-FROM prendre_casque
-INNER JOIN bataille ON prendre_casque.id_bataille  = bataille.id_bataille
+SELECT nom_bataille, SUM(qte) AS nbTotalCasques
+FROM prendre_casque p
+INNER JOIN bataille b ON p.id_bataille  = b.id_bataille
 GROUP BY nom_bataille
-ORDER BY nbTtl DESC
-LIMIT 1;
+HAVING nbTotalCasques>=ALL (
+	SELECT SUM(qte)
+	FROM prendre_casque p
+	INNER JOIN bataille b ON p.id_bataille  = b.id_bataille
+	GROUP BY nom_bataille
+	);
+
 
 --exercice 11 Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par nombre décroissant)
 
