@@ -90,12 +90,12 @@ ORDER BY qte_bue DESC;
 SELECT nom_bataille, SUM(qte) AS nbTotalCasques
 FROM prendre_casque p
 INNER JOIN bataille b ON p.id_bataille  = b.id_bataille
-GROUP BY nom_bataille
+GROUP BY b.id_bataille
 HAVING nbTotalCasques>=ALL (
 	SELECT SUM(qte)
 	FROM prendre_casque p
 	INNER JOIN bataille b ON p.id_bataille  = b.id_bataille
-	GROUP BY nom_bataille
+	GROUP BY b.id_bataille
 	);
 
 
@@ -142,7 +142,6 @@ LEFT JOIN boire b ON p.id_personnage = b.id_personnage
 WHERE b.id_personnage IS NULL;
 
 --exercice 15 Nom du / des personnages qui n'ont pas le droit de boire de la potion 'Magique'.
---/!\ Demander Vérification!
 
 --selectionne les personnages qui ne sont pas dans la table autoriser_boire.
 SELECT p.id_personnage,nom_personnage
@@ -160,6 +159,17 @@ WHERE p.id_personnage NOT IN (
 	INNER JOIN autoriser_boire ab ON p.id_personnage = ab.id_personnage
 	WHERE id_potion=1) 
 GROUP BY p.id_personnage;
+
+--CORRECTION EXERCICE 15
+SELECT nom_personnage
+FROM personnage p
+WHERE p.id_personnage NOT IN(
+SELECT a.id_personnage
+FROM autoriser_boire a
+INNER JOIN potion pt ON pt.id_potion = a.id_potion
+AND pt.nom_potion = 'Magique' )
+
+
 
 --A. Ajoutez le personnage suivant : Champdeblix, agriculteur résidant à la ferme Hantassion de Rotomagus.
 
